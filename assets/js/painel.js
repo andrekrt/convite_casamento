@@ -22,6 +22,31 @@ function copiarLink(button) {
   mostrarFeedbackCopiado(button);
 }
 
+function copiarLinkAcao(button) {
+  const texto = button.dataset.link;
+
+  if (!texto) {
+    return;
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(texto).then(() => {
+      mostrarFeedbackCopiado(button);
+    });
+
+    return;
+  }
+
+  const inputTemporario = document.createElement("input");
+  inputTemporario.value = texto;
+  document.body.appendChild(inputTemporario);
+  inputTemporario.select();
+  document.execCommand("copy");
+  document.body.removeChild(inputTemporario);
+
+  mostrarFeedbackCopiado(button);
+}
+
 function mostrarFeedbackCopiado(button) {
   const originalHtml = button.innerHTML;
   const originalTitle = button.title;

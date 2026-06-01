@@ -243,7 +243,6 @@ $flash = getFlash();
                         <th>Visualizado</th>
                         <th>Respondido</th>
                         <th>Envio</th>
-                        <th>Link individual</th>
                         <th>Observação</th>
                         <th>Ações</th>
                     </tr>
@@ -252,7 +251,7 @@ $flash = getFlash();
                 <tbody>
                     <?php if (empty($convites)): ?>
                         <tr>
-                            <td colspan="11">Nenhum convite cadastrado ainda.</td>
+                            <td colspan="10">Nenhum convite cadastrado ainda.</td>
                         </tr>
                     <?php endif; ?>
 
@@ -312,26 +311,21 @@ $flash = getFlash();
                             </td>
 
                             <td>
-                                <div class="link-box">
-                                    <input type="text" value="<?= htmlspecialchars($link) ?>" readonly>
-
-                                    <button
-                                        type="button"
-                                        class="copy-btn btn-icon"
-                                        onclick="copiarLink(this)"
-                                        title="Copiar link"
-                                        aria-label="Copiar link">
-                                        <i class="fa-regular fa-copy"></i>
-                                    </button>
-                                </div>
-                            </td>
-
-                            <td>
                                 <?= nl2br(htmlspecialchars($convite['observacao_admin'] ?? '-')) ?>
                             </td>
 
                             <td>
                                 <div class="actions-table">
+                                    <button
+                                        type="button"
+                                        class="btn btn-copy btn-icon"
+                                        data-link="<?= htmlspecialchars($link, ENT_QUOTES) ?>"
+                                        onclick="copiarLinkAcao(this)"
+                                        title="Copiar link individual"
+                                        aria-label="Copiar link individual">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+
                                     <a
                                         href="convite-editar.php?id=<?= (int) $convite['id'] ?>"
                                         class="btn btn-secondary btn-icon"

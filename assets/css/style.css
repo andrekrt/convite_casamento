@@ -346,3 +346,12 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
 }
+
+.btn-copy {
+    background: #6f5b7c;
+    color: #ffffff;
+}
+
+.btn-copy:hover {
+    background: #594866;
+}

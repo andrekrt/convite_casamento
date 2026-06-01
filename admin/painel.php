@@ -16,6 +16,9 @@ $stmtResumo = $pdo->query("
         SUM(CASE WHEN status = 'parcial' THEN 1 ELSE 0 END) AS total_parciais,
         SUM(CASE WHEN status = 'recusado' THEN 1 ELSE 0 END) AS total_recusados,
 
+        COALESCE(SUM(adultos_permitidos), 0) AS adultos_cadastrados,
+        COALESCE(SUM(criancas_permitidas), 0) AS criancas_cadastradas,
+
         COALESCE(SUM(adultos_confirmados), 0) AS adultos_confirmados,
         COALESCE(SUM(criancas_confirmadas), 0) AS criancas_confirmadas
     FROM convites
@@ -164,6 +167,23 @@ $flash = getFlash();
             <div class="card">
                 <span><i class="fa-solid fa-envelope"></i> Total de convites</span>
                 <strong><?= (int) ($resumo['total_convites'] ?? 0) ?></strong>
+            </div>
+
+            <div class="card">
+                <span><i class="fa-solid fa-user-group"></i> Adultos cadastrados</span>
+                <strong><?= (int) ($resumo['adultos_cadastrados'] ?? 0) ?></strong>
+            </div>
+
+            <div class="card">
+                <span><i class="fa-solid fa-child"></i> Crianças cadastradas</span>
+                <strong><?= (int) ($resumo['criancas_cadastradas'] ?? 0) ?></strong>
+            </div>
+
+            <div class="card">
+                <span><i class="fa-solid fa-people-group"></i> Total geral cadastrado</span>
+                <strong>
+                    <?= (int) ($resumo['adultos_cadastrados'] ?? 0) + (int) ($resumo['criancas_cadastradas'] ?? 0) ?>
+                </strong>
             </div>
 
             <div class="card">

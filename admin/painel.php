@@ -136,33 +136,6 @@ $flash = getFlash();
             </a>
         </div>
 
-        <form method="GET" class="filters">
-            <div>
-                <label>Status</label>
-                <select name="status">
-                    <option value="">Todos</option>
-                    <option value="pendente" <?= $statusFiltro === 'pendente' ? 'selected' : '' ?>>Pendente</option>
-                    <option value="confirmado" <?= $statusFiltro === 'confirmado' ? 'selected' : '' ?>>Confirmado</option>
-                    <option value="parcial" <?= $statusFiltro === 'parcial' ? 'selected' : '' ?>>Parcial</option>
-                    <option value="recusado" <?= $statusFiltro === 'recusado' ? 'selected' : '' ?>>Recusado</option>
-                </select>
-            </div>
-
-            <div>
-                <label>Buscar</label>
-                <input
-                    type="text"
-                    name="busca"
-                    value="<?= htmlspecialchars($busca) ?>"
-                    placeholder="Nome ou telefone">
-            </div>
-
-            <div class="filter-actions">
-                <button type="submit" class="btn">Filtrar</button>
-                <a href="painel.php" class="btn btn-secondary">Limpar</a>
-            </div>
-        </form>
-
         <section class="cards">
             <div class="card">
                 <span><i class="fa-solid fa-envelope"></i> Total de convites</span>
@@ -223,6 +196,33 @@ $flash = getFlash();
                 </strong>
             </div>
         </section>
+
+        <form method="GET" class="filters">
+            <div>
+                <label>Status</label>
+                <select name="status">
+                    <option value="">Todos</option>
+                    <option value="pendente" <?= $statusFiltro === 'pendente' ? 'selected' : '' ?>>Pendente</option>
+                    <option value="confirmado" <?= $statusFiltro === 'confirmado' ? 'selected' : '' ?>>Confirmado</option>
+                    <option value="parcial" <?= $statusFiltro === 'parcial' ? 'selected' : '' ?>>Parcial</option>
+                    <option value="recusado" <?= $statusFiltro === 'recusado' ? 'selected' : '' ?>>Recusado</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Buscar</label>
+                <input
+                    type="text"
+                    name="busca"
+                    value="<?= htmlspecialchars($busca) ?>"
+                    placeholder="Nome ou telefone">
+            </div>
+
+            <div class="filter-actions">
+                <button type="submit" class="btn">Filtrar</button>
+                <a href="painel.php" class="btn btn-secondary">Limpar</a>
+            </div>
+        </form>
 
         <div class="result-info">
             Exibindo <?= count($convites) ?> de <?= $totalRegistros ?> convite(s)

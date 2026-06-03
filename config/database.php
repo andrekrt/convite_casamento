@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 $host = getenv('DB_HOST') ?: 'localhost';
-$dbname = getenv('DB_NAME') ?: 'convite_andre_monica';
+$dbname = getenv('DB_NAME') ?: 'convite';
 $user = getenv('DB_USER') ?: 'root';
 $password = getenv('DB_PASSWORD') ?: '';
 

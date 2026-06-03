@@ -50,8 +50,8 @@ $stmt = $pdo->query("
 
 $presentes = $stmt->fetchAll();
 
-$mapsIgreja = 'https://maps.google.com';
-$mapsRecepcao = 'https://maps.google.com';
+$mapsIgreja = 'https://maps.app.goo.gl/V1EZmQ4GNr2kXZZc9';
+$mapsRecepcao = 'https://maps.app.goo.gl/uqSgxtxgd3RfemED9';
 
 $adultosPermitidos = (int) $convite['adultos_permitidos'];
 $criancasPermitidas = (int) $convite['criancas_permitidas'];
@@ -80,9 +80,13 @@ $jaRespondeu = $convite['respondido_em'] !== null;
 
     <header class="hero">
         <div class="hero-overlay">
-            <p class="pre-title">Com alegria, convidamos você para o nosso casamento</p>
+            <p class="pre-title">
+                DEPOIS DE TANTOS SONHOS E ORAÇÕES,
+                CHEGOU O DIA DE CELEBRAR
+                O NOSSO AMOR
+            </p>
 
-            <h1>Andre <span>&</span> Monica</h1>
+            <h1>André <span>&</span> Monica</h1>
 
             <p class="date">01 de Agosto de 2026</p>
 
@@ -102,49 +106,71 @@ $jaRespondeu = $convite['respondido_em'] !== null;
         <section class="section intro">
             <div class="ornament">❦</div>
 
-            <h2>Vamos nos casar!</h2>
+            <h2>O amor nos trouxe até aqui</h2>
 
-            <p>
-                Com a bênção de Deus e o amor de nossas famílias, convidamos você
-                para celebrar conosco o início da nossa nova vida.
+            <p class="txt-center">
+                Entre sonhos, sorrisos e bênçãos, Deus escreveu uma linda história
+                em nossas vidas. Agora, chegou o momento de dar início a um novo capítulo.
             </p>
 
-            <p>
-                Será uma alegria imensa ter sua presença neste dia tão especial,
-                compartilhando conosco cada momento dessa união.
+            <p class="txt-center">
+                Queremos celebrar esse dia ao lado de pessoas especiais,
+                que tornam nossa história ainda mais completa e cheia de significado.
             </p>
 
             <p class="guest-name">
-                Este convite é especial para:
+                Este convite foi preparado com carinho para:
                 <strong><?= htmlspecialchars($convite['nome_convite']) ?></strong>
             </p>
 
-            <strong>Com carinho, Andre & Monica</strong>
+            <strong>Com carinho, André & Monica</strong>
         </section>
 
         <section class="section event-info">
-            <h2>O grande dia</h2>
+            <h2>Celebre conosco</h2>
 
             <div class="info-grid">
                 <article class="info-card">
                     <span>01</span>
-                    <h3>Celebração</h3>
-                    <p>01 de Agosto de 2026, às 16h</p>
-                    <p>Igreja de Sant'Ana e São Joaquim</p>
+                    <h3>Cerimônia Religiosa</h3>
+
+                    <p>
+                        A celebração da nossa união acontecerá no dia
+                        <strong>01 de agosto de 2026</strong>, às <strong>15h30</strong>.
+                    </p>
+
+                    <p>
+                        <strong>Paróquia de Sant'Ana e São Joaquim</strong>
+                    </p>
+
+                    <p class="address">
+                        Rua Raimundo Corrêa, Juçaral, Bacabal - MA
+                    </p>
 
                     <a href="<?= htmlspecialchars($mapsIgreja) ?>" target="_blank" class="small-link">
-                        Ver trajeto
+                        Ver localização
                     </a>
                 </article>
 
                 <article class="info-card">
                     <span>02</span>
-                    <h3>Recepção</h3>
-                    <p>Após a celebração</p>
-                    <p>Prime House</p>
+                    <h3>Recepção dos convidados</h3>
+
+                    <p>
+                        Após a cerimônia, esperamos você para celebrar conosco
+                        este momento especial.
+                    </p>
+
+                    <p>
+                        <strong>Prime House Eventos</strong>
+                    </p>
+
+                    <p class="address">
+                        Rua Raimunda Loiola, N° 55, Green Park, Bacabal - MA
+                    </p>
 
                     <a href="<?= htmlspecialchars($mapsRecepcao) ?>" target="_blank" class="small-link">
-                        Ver trajeto
+                        Ver localização
                     </a>
                 </article>
             </div>
@@ -154,8 +180,9 @@ $jaRespondeu = $convite['respondido_em'] !== null;
             <h2>Confirme sua presença</h2>
 
             <p>
-                Para nos ajudar na organização, confirme abaixo a quantidade de adultos
-                e crianças que irão comparecer.
+                Sua presença tornará este dia ainda mais especial para nós.
+                Para nos ajudar a preparar tudo com carinho, confirme abaixo
+                quantas pessoas deste convite irão celebrar conosco.
             </p>
 
             <div class="invite-limit-box">
@@ -215,11 +242,10 @@ $jaRespondeu = $convite['respondido_em'] !== null;
         </section>
 
         <section id="presentes" class="section gift-section">
-            <h2>Presentes</h2>
+            <h2>Sugestões de Presentes</h2>
 
-            <p>
-                Sua presença é o nosso maior presente. Mas, se desejar nos presentear,
-                preparamos algumas opções com muito carinho.
+            <p class="txt-center">
+                Sua presença já é o nosso maior presente. Mas, se desejar nos presentear de alguma forma, preparamos algumas sugestões simbólicas com muito carinho.
             </p>
 
             <div class="gift-grid">
@@ -231,7 +257,7 @@ $jaRespondeu = $convite['respondido_em'] !== null;
 
                         <h3><?= htmlspecialchars($presente['subtitulo']) ?></h3>
 
-                        <p><?= htmlspecialchars($presente['descricao']) ?></p>
+                        <p class="txt-center"><?= htmlspecialchars($presente['descricao']) ?></p>
 
                         <strong>
                             R$ <?= number_format((float) $presente['valor'], 2, ',', '.') ?>
@@ -256,22 +282,29 @@ $jaRespondeu = $convite['respondido_em'] !== null;
 
             <div class="photo-grid">
                 <img src="assets/img/casal-1.jpg" alt="Andre e Monica">
-                <img src="assets/img/casal-2.jpg" alt="Andre e Monica">
-                <img src="assets/img/casal-3.jpg" alt="Andre e Monica">
+                <img src="assets/img/casal-2.png" alt="Andre e Monica">
+                <img src="assets/img/casal-3.png" alt="Andre e Monica">
             </div>
         </section>
 
         <section class="section closing">
             <div class="ornament">❦</div>
 
-            <h2>Esperamos você</h2>
+            <h2>Com alegria, esperamos por você</h2>
 
             <p>
-                Para viver conosco esse dia tão sonhado.
-                Sua presença tornará esse momento ainda mais especial.
+                Nosso coração já se prepara para esse dia tão especial.
+                Será uma bênção celebrar nossa união ao lado de pessoas queridas
+                que fazem parte da nossa história.
             </p>
 
-            <strong>Andre & Monica</strong>
+            <blockquote class="verse">
+                “Assim, eles já não são dois, mas sim uma só carne.
+                Portanto, o que Deus uniu, ninguém separe.”
+                <span>Mt 19,6</span>
+            </blockquote>
+
+            <strong>Com carinho, Andre & Monica</strong>
         </section>
 
     </main>

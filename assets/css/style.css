@@ -1,7 +1,7 @@
 :root {
     --bg: #fff8f3;
     --text: #3d2523;
-    --wine: #7b2d35;
+    --wine: #91A8D0;
     --gold: #c9a45c;
     --champagne: #f3e3d3;
     --white: #ffffff;
@@ -27,7 +27,7 @@ body {
     min-height: 100vh;
     background:
         linear-gradient(rgba(61, 37, 35, 0.48), rgba(61, 37, 35, 0.55)),
-        url('../img/capa.jpg') center/cover no-repeat;
+        url('../img/capa.png') center/cover no-repeat;
 }
 
 .hero-overlay {
@@ -138,6 +138,10 @@ button {
     margin: 12px auto;
     font-size: 18px;
     line-height: 1.8;
+}
+
+.section p.txt-center {
+    text-align: justify;
 }
 
 .ornament {

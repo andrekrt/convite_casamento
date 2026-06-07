@@ -245,7 +245,9 @@ $jaRespondeu = $convite['respondido_em'] !== null;
             <h2>Sugestões de Presentes</h2>
 
             <p class="txt-center">
-                Sua presença já é o nosso maior presente. Mas, se desejar nos presentear de alguma forma, preparamos algumas sugestões simbólicas com muito carinho.
+                Sua presença será sempre o nosso maior presente. Como já temos nosso lar
+                e seguimos construindo nossa história juntos, deixamos algumas sugestões
+                simbólicas para quem desejar nos presentear com carinho.
             </p>
 
             <div class="gift-grid">

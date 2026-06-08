@@ -364,3 +364,12 @@ th {
   margin-right: 6px;
   color: #c9a45c;
 }
+
+.btn-message {
+    background: #7b5ea7;
+    color: #ffffff;
+}
+
+.btn-message:hover {
+    background: #63498d;
+}

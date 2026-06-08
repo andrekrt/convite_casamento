@@ -368,6 +368,19 @@ $flash = getFlash();
                                         </form>
                                     <?php endif; ?>
 
+                                    <?php if (!empty($convite['mensagem'])): ?>
+                                        <button
+                                            type="button"
+                                            class="btn btn-message btn-icon"
+                                            data-nome="<?= htmlspecialchars($convite['nome_convite'], ENT_QUOTES) ?>"
+                                            data-mensagem="<?= htmlspecialchars($convite['mensagem'], ENT_QUOTES) ?>"
+                                            onclick="verMensagemConvidado(this)"
+                                            title="Ver mensagem do convidado"
+                                            aria-label="Ver mensagem do convidado">
+                                            <i class="fa-solid fa-comment-dots"></i>
+                                        </button>
+                                    <?php endif; ?>
+
                                     <form
                                         action="convite-excluir.php"
                                         method="POST"

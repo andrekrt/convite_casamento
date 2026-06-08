@@ -24,5 +24,22 @@ function updateCounter() {
     `;
 }
 
+function verMensagemConvidado(button) {
+  const nome = button.dataset.nome || "Convidado";
+  const mensagem = button.dataset.mensagem || "";
+
+  if (!mensagem.trim()) {
+    return;
+  }
+
+  Swal.fire({
+    title: "Mensagem de " + nome,
+    text: mensagem,
+    icon: "info",
+    confirmButtonText: "Fechar",
+    confirmButtonColor: "#7b2d35",
+  });
+}
+
 updateCounter();
 setInterval(updateCounter, 1000);

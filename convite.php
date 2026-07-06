@@ -6,6 +6,8 @@ require_once __DIR__ . '/config/database.php';
 
 $token = trim($_GET['t'] ?? '');
 
+$prazoConfirmacaoEncerrado = date('Y-m-d') > '2026-07-05';
+
 if ($token === '') {
     http_response_code(404);
     exit('Convite não encontrado. Verifique se o link foi copiado corretamente.');
@@ -95,7 +97,12 @@ $jaRespondeu = $convite['respondido_em'] !== null;
             </div>
 
             <div class="hero-buttons">
-                <a href="#confirmar" class="btn btn-primary">Confirmar presença</a>
+                <?php if ($prazoConfirmacaoEncerrado): ?>
+                    <a href="#confirmar" class="btn btn-primary">Ver aviso de confirmação</a>
+                <?php else: ?>
+                    <a href="#confirmar" class="btn btn-primary">Confirmar presença</a>
+                <?php endif; ?>
+
                 <a href="#presentes" class="btn btn-outline">Lista de presentes</a>
             </div>
         </div>
@@ -177,68 +184,89 @@ $jaRespondeu = $convite['respondido_em'] !== null;
         </section>
 
         <section id="confirmar" class="section confirm-section">
-            <h2>Confirme sua presença</h2>
+            <?php if ($prazoConfirmacaoEncerrado): ?>
 
-            <p>
-                Sua presença tornará este dia ainda mais especial para nós.
-                Para nos ajudar a preparar tudo com carinho, confirme abaixo
-                quantas pessoas deste convite irão celebrar conosco.
-            </p>
+                <div class="confirmation-closed">
+                    <h3>Confirmação encerrada</h3>
 
-            <div class="invite-limit-box">
-                <h3><?= htmlspecialchars($convite['nome_convite']) ?></h3>
+                    <p>
+                        O prazo para confirmação de presença encerrou em 05/07/2026.
+                        Como precisamos finalizar os detalhes com o buffet e a estrutura do evento,
+                        novas confirmações pelo convite não estão mais disponíveis.
+                    </p>
+
+                    <p>
+                        Caso tenha alguma dúvida, entre em contato diretamente com os noivos.
+                    </p>
+                </div>
+
+            <?php else: ?>
+
+
+                <h2>Confirme sua presença</h2>
 
                 <p>
-                    Este convite contempla:
-                    <strong><?= $adultosPermitidos ?> adulto(s)</strong>
-
-                    <?php if ($criancasPermitidas > 0): ?>
-                        e <strong><?= $criancasPermitidas ?> criança(s)</strong>
-                    <?php endif; ?>
+                    Sua presença tornará este dia ainda mais especial para nós.
+                    Para nos ajudar a preparar tudo com carinho, confirme abaixo
+                    quantas pessoas deste convite irão celebrar conosco.
                 </p>
 
-                <?php if ($jaRespondeu): ?>
-                    <p class="already-answered">
-                        Você já respondeu este convite.
-                        Caso necessário, é possível atualizar a confirmação abaixo.
+                <div class="invite-limit-box">
+                    <h3><?= htmlspecialchars($convite['nome_convite']) ?></h3>
+
+                    <p>
+                        Este convite contempla:
+                        <strong><?= $adultosPermitidos ?> adulto(s)</strong>
+
+                        <?php if ($criancasPermitidas > 0): ?>
+                            e <strong><?= $criancasPermitidas ?> criança(s)</strong>
+                        <?php endif; ?>
                     </p>
-                <?php endif; ?>
-            </div>
 
-            <form action="confirmar.php" method="POST" class="form-rsvp" id="formConfirmacao">
-                <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
+                    <?php if ($jaRespondeu): ?>
+                        <p class="already-answered">
+                            Você já respondeu este convite.
+                            Caso necessário, é possível atualizar a confirmação abaixo.
+                        </p>
+                    <?php endif; ?>
+                </div>
 
-                <label>
-                    Adultos que irão comparecer
-                    <select name="adultos_confirmados" required>
-                        <?php for ($i = 0; $i <= $adultosPermitidos; $i++): ?>
-                            <option value="<?= $i ?>"
-                                <?= $adultosConfirmados !== null && (int) $adultosConfirmados === $i ? 'selected' : '' ?>>
-                                <?= $i ?>
-                            </option>
-                        <?php endfor; ?>
-                    </select>
-                </label>
+                <form action="confirmar.php" method="POST" class="form-rsvp" id="formConfirmacao">
+                    <input type="hidden" name="token" value="<?= htmlspecialchars($token) ?>">
 
-                <label>
-                    Crianças que irão comparecer
-                    <select name="criancas_confirmadas" required>
-                        <?php for ($i = 0; $i <= $criancasPermitidas; $i++): ?>
-                            <option value="<?= $i ?>"
-                                <?= $criancasConfirmadas !== null && (int) $criancasConfirmadas === $i ? 'selected' : '' ?>>
-                                <?= $i ?>
-                            </option>
-                        <?php endfor; ?>
-                    </select>
-                </label>
+                    <label>
+                        Adultos que irão comparecer
+                        <select name="adultos_confirmados" required>
+                            <?php for ($i = 0; $i <= $adultosPermitidos; $i++): ?>
+                                <option value="<?= $i ?>"
+                                    <?= $adultosConfirmados !== null && (int) $adultosConfirmados === $i ? 'selected' : '' ?>>
+                                    <?= $i ?>
+                                </option>
+                            <?php endfor; ?>
+                        </select>
+                    </label>
 
-                <label>
-                    Mensagem para os noivos
-                    <textarea name="mensagem" maxlength="500" placeholder="Deixe uma mensagem especial"><?= htmlspecialchars($convite['mensagem'] ?? '') ?></textarea>
-                </label>
+                    <label>
+                        Crianças que irão comparecer
+                        <select name="criancas_confirmadas" required>
+                            <?php for ($i = 0; $i <= $criancasPermitidas; $i++): ?>
+                                <option value="<?= $i ?>"
+                                    <?= $criancasConfirmadas !== null && (int) $criancasConfirmadas === $i ? 'selected' : '' ?>>
+                                    <?= $i ?>
+                                </option>
+                            <?php endfor; ?>
+                        </select>
+                    </label>
 
-                <button type="submit">Enviar confirmação</button>
-            </form>
+                    <label>
+                        Mensagem para os noivos
+                        <textarea name="mensagem" maxlength="500" placeholder="Deixe uma mensagem especial"><?= htmlspecialchars($convite['mensagem'] ?? '') ?></textarea>
+                    </label>
+
+                    <button type="submit">Enviar confirmação</button>
+                </form>
+
+            <?php endif; ?>
         </section>
 
         <section id="presentes" class="section gift-section">

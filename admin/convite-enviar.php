@@ -86,7 +86,7 @@ $mensagem = "Olá, {$convite['nome_convite']}! 💍\n\n"
     . "Acesse o convite pelo link abaixo e confirme sua presença:\n"
     . $linkConvite . "\n\n"
     . "Caso o link não apareça clicável, salve este contato ou responda esta mensagem. Em seguida, o link ficará disponível para acesso.\n\n"
-    . "Pedimos, por gentileza, que a confirmação seja feita até o dia 05/07/2026, "
+    . "Pedimos, por gentileza, que a confirmação seja feita até o dia 30/07/2026, "
     . "pois precisamos organizar com carinho todos os detalhes da recepção, como buffet, lugares e estrutura para os convidados.\n\n"
     . "Caso não haja confirmação até essa data, entenderemos que não será possível comparecer.\n\n"
     . "Será uma grande alegria ter vocês conosco nesse dia tão especial!";

@@ -6,7 +6,7 @@ require_once __DIR__ . '/config/database.php';
 
 $token = trim($_GET['t'] ?? '');
 
-$prazoConfirmacaoEncerrado = date('Y-m-d') > '2026-07-05';
+$prazoConfirmacaoEncerrado = date('Y-m-d') > '2026-07-30';
 
 if ($token === '') {
     http_response_code(404);
